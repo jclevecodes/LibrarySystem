@@ -15,7 +15,7 @@ class Lib:
         
         data = CSVDatabase()
         data.addBookToDatabase(bookTitle, bookAuthor, bookISBN, True)
-        
+
     def bookLookup(self):
         bookISBN = input("Enter ISBN # to locate book")
         print(bookISBN)
@@ -23,6 +23,7 @@ class Lib:
             print(self.libdict[bookISBN])
     
     def menu(self):
+        print("HEY")
         searching = True
         # print("Inside of menu()")
         choice = ''
