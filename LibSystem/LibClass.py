@@ -23,6 +23,7 @@ class Lib:
             print(self.libdict[bookISBN])
     
     def menu(self):
+        print("BLAHHHHHH")
         searching = True
         # print("Inside of menu()")
         choice = ''
