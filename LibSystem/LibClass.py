@@ -24,6 +24,7 @@ class Lib:
     
     def menu(self):
         print("BLAHHHHHH")
+        print('test')
         searching = True
         # print("Inside of menu()")
         choice = ''
