@@ -5,7 +5,7 @@ class Book:
         self.isbn = bookISBN
 
     def __str__(self):
-        return f"Author: {self.author} Title: {self.title} ISBN: {self.isbn}"
+        return f"Author: {self.author}\n Title: {self.title}\n ISBN: {self.isbn}\n"
 
     def getAuthor(self):
         return(self.author)
