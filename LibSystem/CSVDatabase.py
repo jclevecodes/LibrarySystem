@@ -22,24 +22,10 @@ class CSVDatabase:
 
                 self.addBookToDatabase(title, author, isbn)
 
-                # if (requestData == True)
-                #     print(row)
-
-                # # Instantiate book object
-                # book = Book(author, title, isbn)
-
-                # # Store book inside assigned dictionary
-                # self.titleDict[title] = book
-                # self.authorDict[author] = book
-                # self.isbnDict[isbn] = book
-
-                
-        
     '''
         
     '''
     def addBookToDatabase(self, title, author, isbn, addBook = False):
-        # addBook = False
 
         # Instantiate book object
         book = Book(author, title, isbn)
@@ -59,32 +45,43 @@ class CSVDatabase:
 
 
     def searchByTitle(self, searchedTitle):
+        searchResult = input("Enter book title\n")
+        seen_keys = set()
+        for key in self.titleDict.items():
+            if searchResult in self.titleDict.keys():
+                print("DOUBLE TITLES")
+
         if searchedTitle in self.titleDict:
-            print(self.titleDict[searchedTitle])
+            print(f"{self.titleDict[searchedTitle]}")
+        else:
+            print("Book not located in system.")
 
     def searchByAuthor(self, searchedAuthor):
         if searchedAuthor in self.authorDict:
-            print(self.authorDict[searchedAuthor])
+            print(f"{self.authorDict[searchedAuthor]}")
+        else:
+            print("Book not located in system.")
 
     def searchByISBN(self, searchedISBN):
         if searchedISBN in self.authorDict:
-            print(self.authorDict[searchedISBN])
+            print(f"{self.authorDict[searchedISBN]}")
+        else:
+            print("Book not located in system/")
 
 
-# if __name__ == "__main__":
-#     data = CSVDatabase()
-#     # data.addBookToDatabase("asds", "asdasd", "124235345", True)
+if __name__ == "__main__":
+    data = CSVDatabase()
+    # data.addBookToDatabase("asds", "asdasd", "124235345", True)
 
-#     searching = input("Search library using 1. Title 2. Author 3. ISBN\n")
+    searching = input("Search library using 1. Title 2. Author 3. ISBN\n")
 
-#     print
 
-#     if (searching == "1"):
-#         searchResult = input("Enter book title\n")
-#         data.searchByTitle(searchResult)
-#     elif (searching == "2"):
-#         searchResult = input("Enter book author\n")
-#         data.searchByAuthor(searchResult)
-#     elif (searching == "3"):
-#         searchResult = input("Enter book ISBN\n")
-#         data.searchByISBN(searchResult)
+    if (searching == "1"):
+        
+        data.searchByTitle(searchResult)
+    elif (searching == "2"):
+        searchResult = input("Enter book author\n")
+        data.searchByAuthor(searchResult)
+    elif (searching == "3"):
+        searchResult = input("Enter book ISBN\n")
+        data.searchByISBN(searchResult)

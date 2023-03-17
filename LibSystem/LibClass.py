@@ -1,8 +1,16 @@
 from CSVDatabase import CSVDatabase
+from UserClass import User
+data = CSVDatabase()
+user = User()
 
 class Lib:
-    # libdict = {'ISBN': '1234', 'author': 'Josh C.'}
     libdict = {}
+
+    def userRegistration(self):
+        userName = input(f"Enter your {user.setName}")
+        userID = input(f"Enter your ID number {user.setID}")
+
+        print(f"{userName} with ID #{userID} has been registered in our system")
 
     def addBook(self):
         bookTitle = ''
@@ -13,39 +21,47 @@ class Lib:
         bookAuthor = input("Enter the book Author: ")
         bookISBN = input("Enter the book ISBN number: ")
         
-        data = CSVDatabase()
         data.addBookToDatabase(bookTitle, bookAuthor, bookISBN, True)
 
     def bookLookup(self):
-        bookISBN = input("Enter ISBN # to locate book")
-        print(bookISBN)
-        if bookISBN in self.libdict:
-            print(self.libdict[bookISBN])
+        searchMethod = input("How would you like to search for book? 1. Title 2. Author 3. ISBN\n")
+        titleSearch = ''
+        authorSearch = ''
+        isbnSearch = ''
+
+        match searchMethod:
+            case "1":
+                titleSearch = input("Enter book title: ")
+                data.searchByTitle(titleSearch)
+            case "2":
+                authorSearch = input("Enter book author: ")
+                data.searchByAuthor(authorSearch)
+            case "3":
+                isbnSearch = input("Enter book ISBN: ")
+                data.searchByISBN(isbnSearch)
     
     def menu(self):
-        print("BLAHHHHHH")
         searching = True
-        # print("Inside of menu()")
         choice = ''
 
         print("Choose menu item")
         while (searching == True):
-            choice = input("1. Add Book 2. Lookup Book 3. Check-in 4. Check-out 5. Finish library\n")
+            choice = input("1. Registration 2. Add Book 3. Lookup Book 4. Check-in 5. Check-out 6. Finish library\n")
 
             match choice:
                 case "1":
-                    lib.addBook()
+                    lib.userRegistration()
                 case "2":
-                    lib.bookLookup()
+                    lib.addBook()
                 case "3":
-                    print()
+                    lib.bookLookup()
                 case "4":
                     print()
                 case "5":
+                    print()
+                case "6":
                     searching = False
 
 if __name__ == "__main__":
-    # data = CSVDatabase()
-    # data.addBookToDatabase()
     lib = Lib()
     lib.menu()
