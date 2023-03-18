@@ -1,14 +1,13 @@
 import csv
+from User import User
 FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/users.csv'
 
-class User:
+class UserDatabase:
 
     nameDict = {}
     idDict = {}
 
-    def __init__(self, userName, userID):
-        self.name = userName 
-        self.id = userID
+    def __init__(self):
 
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
@@ -19,9 +18,6 @@ class User:
                 id = row[1]
 
                 self.addUserToDatabase(name, id)
-
-    def __str__(self):
-        return f"Name: {self.name} ID: {self.id}"
 
     def addUserToDatabase(self, name, id, addUser = False):
 
@@ -37,21 +33,3 @@ class User:
                 writer = csv.writer(file)
 
                 writer.writerow([name, id])
-
-    def getName(self):
-        return (self.name)
-    
-    def setName(self, nameOfUser):
-        self.name = nameOfUser
-    
-    def getID(self):
-        return (self.id)
-    
-    def setID(self, idOfUser):
-        self.id = idOfUser
-
-
-
-
-
-

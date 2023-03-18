@@ -41,9 +41,6 @@ class CSVDatabase:
 
                 writer.writerow([title, author, isbn])
 
-        
-
-
     def searchByTitle(self, searchedTitle):
         searchResult = input("Enter book title\n")
         seen_keys = set()

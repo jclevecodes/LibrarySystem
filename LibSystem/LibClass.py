@@ -1,33 +1,32 @@
 from CSVDatabase import CSVDatabase
-from UserClass import User
+from UserDatabase import UserDatabase
 data = CSVDatabase()
-user = User()
+user = UserDatabase()
 
 class Lib:
-    libdict = {}
 
     def userRegistration(self):
-        userName = input(f"Enter your {user.setName}")
-        userID = input(f"Enter your ID number {user.setID}")
+        userName = input(f"Enter your name: ")
+        userID = input(f"Enter your ID number: ")
 
-        print(f"{userName} with ID #{userID} has been registered in our system")
+        user.addUserToDatabase(userName, userID, True)
+
+        print("------------------------------------------------------------------")
+        print(f"{userName} with ID #{userID} has been registered within our library system!")
+        print("------------------------------------------------------------------\n")
 
     def addBook(self):
-        bookTitle = ''
-        bookAuthor = ''
-        bookISBN = ''
-        
         bookTitle = input("Enter the book Title: ")
         bookAuthor = input("Enter the book Author: ")
         bookISBN = input("Enter the book ISBN number: ")
         
         data.addBookToDatabase(bookTitle, bookAuthor, bookISBN, True)
+        print("----------------------------------------------------------------------------------------------")
+        print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
+        print("----------------------------------------------------------------------------------------------\n")
 
     def bookLookup(self):
         searchMethod = input("How would you like to search for book? 1. Title 2. Author 3. ISBN\n")
-        titleSearch = ''
-        authorSearch = ''
-        isbnSearch = ''
 
         match searchMethod:
             case "1":
@@ -42,11 +41,10 @@ class Lib:
     
     def menu(self):
         searching = True
-        choice = ''
 
         print("Choose menu item")
         while (searching == True):
-            choice = input("1. Registration 2. Add Book 3. Lookup Book 4. Check-in 5. Check-out 6. Finish library\n")
+            choice = input("1. Registration | 2. Add Book | 3. Lookup Book | 4. Check-in | 5. Check-out | 6. Finish library\n")
 
             match choice:
                 case "1":
