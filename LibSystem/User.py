@@ -21,9 +21,3 @@ class User:
     
     def setID(self, idOfUser):
         self.id = idOfUser
-
-
-
-
-
-

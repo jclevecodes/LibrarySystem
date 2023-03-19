@@ -3,17 +3,17 @@ from UserDatabase import UserDatabase
 data = CSVDatabase()
 user = UserDatabase()
 
-class Lib:
+class LibManager:
 
     def userRegistration(self):
-        userName = input(f"Enter your name: ")
-        userID = input(f"Enter your ID number: ")
+            userName = input(f"Enter your name: ")
+            userID = input(f"Enter your ID number: ")
 
-        user.addUserToDatabase(userName, userID, True)
+            user.addUserToDatabase(userName, userID, True)
 
-        print("------------------------------------------------------------------")
-        print(f"{userName} with ID #{userID} has been registered within our library system!")
-        print("------------------------------------------------------------------\n")
+            print("----------------------------------------------------------------------------------")
+            print(f"{userName} with ID #{userID} has been registered within our library system!")
+            print("----------------------------------------------------------------------------------\n")
 
     def addBook(self):
         bookTitle = input("Enter the book Title: ")
@@ -38,28 +38,3 @@ class Lib:
             case "3":
                 isbnSearch = input("Enter book ISBN: ")
                 data.searchByISBN(isbnSearch)
-    
-    def menu(self):
-        searching = True
-
-        print("Choose menu item")
-        while (searching == True):
-            choice = input("1. Registration | 2. Add Book | 3. Lookup Book | 4. Check-in | 5. Check-out | 6. Finish library\n")
-
-            match choice:
-                case "1":
-                    lib.userRegistration()
-                case "2":
-                    lib.addBook()
-                case "3":
-                    lib.bookLookup()
-                case "4":
-                    print()
-                case "5":
-                    print()
-                case "6":
-                    searching = False
-
-if __name__ == "__main__":
-    lib = Lib()
-    lib.menu()
