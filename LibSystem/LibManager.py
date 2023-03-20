@@ -1,8 +1,9 @@
-from CSVDatabase import CSVDatabase
-from UserDatabase import UserDatabase
-data = CSVDatabase()
-user = UserDatabase()
+from UserService import UserService
+from BookService import BookService
+
 
 class LibManager:
-    print()
+    if __name__ == "__main__":
+        user = UserService()
+        book = BookService()
    
