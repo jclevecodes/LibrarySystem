@@ -10,7 +10,7 @@ class LibManager:
             userID = input(f"Enter your ID number: ")
 
             user.addUserToDatabase(userName, userID, True)
-
+            print("testing new branch")
             print("----------------------------------------------------------------------------------")
             print(f"{userName} with ID #{userID} has been registered within our library system!")
             print("----------------------------------------------------------------------------------\n")
