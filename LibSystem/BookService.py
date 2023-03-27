@@ -8,6 +8,7 @@ class BookService:
         bookISBN = input("Enter the book ISBN number: ")
         
         data.addBookToDatabase(bookTitle, bookAuthor, bookISBN, True)
+        
         print("----------------------------------------------------------------------------------------------")
         print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
         print("----------------------------------------------------------------------------------------------\n")
