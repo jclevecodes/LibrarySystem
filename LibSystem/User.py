@@ -8,7 +8,7 @@ class User:
         self.id = userID
 
     def __str__(self):
-        return f"Name: {self.name} ID: {self.id}"
+        return f"Name: {self.name}\n ID: {self.id}\n"
 
     def getName(self):
         return (self.name)
