@@ -12,16 +12,22 @@ class BookService:
         print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
         print("----------------------------------------------------------------------------------------------\n")
 
+
     def bookLookup(self):
         searchMethod = input("How would you like to search for book? 1. Title 2. Author 3. ISBN\n")
 
         match searchMethod:
             case "1":
                 titleSearch = input("Enter book title: ")
-                data.searchByTitle(titleSearch)
+                if titleSearch in data.titleDict:
+                    print(f"{data.titleDict[titleSearch]}")
             case "2":
                 authorSearch = input("Enter book author: ")
-                data.searchByAuthor(authorSearch)
+                if authorSearch in data.authorDict:
+                    print(f"{data.authorDict[authorSearch]}")
             case "3":
                 isbnSearch = input("Enter book ISBN: ")
-                data.searchByISBN(isbnSearch)
+                if isbnSearch in data.isbnDict:
+                    print(f"{data.isbnDict[isbnSearch]}")
+
+    
