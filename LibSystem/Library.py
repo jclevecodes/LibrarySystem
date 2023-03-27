@@ -12,15 +12,15 @@ class Library:
 
             match choice:
                 case "1":
-                    manage.userRegistration
+                    manage.user.userRegistration()
                 case "2":
-                    manage.addBook()
+                    manage.book.addBook()
                 case "3":
-                    manage.bookLookup()
+                    manage.book.bookLookup()
                 case "4":
-                    print()
+                    manage.user.userVerification()
                 case "5":
-                    print()
+                    manage.user.userVerification()
                 case "6":
                     searching = False
                 case _:
