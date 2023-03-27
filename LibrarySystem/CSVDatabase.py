@@ -47,4 +47,5 @@ class CSVDatabase:
 
 
 if __name__ == "__main__":
+    print("testing pushes with remote branches")
     data = CSVDatabase()
