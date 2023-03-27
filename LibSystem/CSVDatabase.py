@@ -29,32 +29,22 @@ class CSVDatabase:
 
         # Instantiate book object
         book = Book(author, title, isbn)
-
+        # print(book)
         # Store book inside assigned dictionary
         self.titleDict[title] = book
         self.authorDict[author] = book
         self.isbnDict[isbn] = book
         
+        
         if (addBook == True):
-            with open(FILE_PATH, mode='a', newline="\n") as file:
-                writer = csv.writer(file)
+            if title in self.titleDict:
+                print(f"{title} is currently in the library already.")
+            else:
+                with open(FILE_PATH, mode='a', newline="\n") as file:
+                    writer = csv.writer(file)
 
-                writer.writerow([title, author, isbn])
+                    writer.writerow([title, author, isbn])
 
 
-"""
 if __name__ == "__main__":
     data = CSVDatabase()
-
-    searching = input("Search library using 1. Title 2. Author 3. ISBN\n")
-
-    if (searching == "1"):
-        searchResult = input("Enter book title\n")
-        data.searchByTitle(searchResult)
-    elif (searching == "2"):
-        searchResult = input("Enter book author\n")
-        data.searchByAuthor(searchResult)
-    elif (searching == "3"):
-        searchResult = input("Enter book ISBN\n")
-        data.searchByISBN(searchResult)
-"""
