@@ -4,7 +4,6 @@ FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/users.csv'
 
 
 class UserDatabase:
-
     def __init__(self):
         self.nameDict = {}
         self.idDict = {}
@@ -20,7 +19,6 @@ class UserDatabase:
                 self.addUserToDatabase(name, id)
 
     def addUserToDatabase(self, name, id, addUser = False):
-
         # Instantiate book object
         user = User(name, id)
 

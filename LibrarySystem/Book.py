@@ -11,7 +11,7 @@ class Book:
         else:
             availability = "Unavailable"
 
-        return f"Author: {self.author}\n Title: {self.title}\n ISBN: {self.isbn}\n ({availability})\n"
+        return(f"Author: {self.author}\n Title: {self.title}\n ISBN: {self.isbn}\n ({availability})\n")
     
     def checkOut(self):
         self.available = False
@@ -27,4 +27,3 @@ class Book:
     
     def getISBN(self):
         return(self.isbn)
-    
