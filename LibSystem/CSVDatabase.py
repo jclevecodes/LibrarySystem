@@ -6,6 +6,7 @@ FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/books.csv'
 class CSVDatabase:
 
     def __init__(self):
+        
         self.titleDict = {}
         self.authorDict = {}
         self.isbnDict = {}
@@ -14,18 +15,30 @@ class CSVDatabase:
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
             
+            # Looping over each book row
             for row in reader:
+                checkoutCopies = []
+                # print(type(row))
+                print(row)
                 # Grab info from csv file and store info in assigned variables
                 title = row[0]
                 author = row[1]
                 isbn = row[2]
 
-                self.addBookToDatabase(title, author, isbn)
+                
+                for i in range(3, len(row)):
+                    checkoutCopies.append(row[i])
+
+                
+                self.addBookToDatabase(title, author, isbn, checkoutCopies)
+            
+                print(checkoutCopies)
+                checkoutCopies = []
 
     '''
         * Method that allows the addition of book to the database
     '''
-    def addBookToDatabase(self, title, author, isbn, addBook = False):
+    def addBookToDatabase(self, title, author, isbn, copies, addBook = False):
 
         # Instantiate book object
         book = Book(author, title, isbn)
@@ -36,6 +49,11 @@ class CSVDatabase:
         self.isbnDict[isbn] = book
         
         
+        # Check if copies  exists
+        
+        #Exists - add to list of copies
+
+        #Non-existent - add book as new
         if (addBook == True):
             if title in self.titleDict:
                 print(f"{title} is currently in the library already.")
@@ -48,3 +66,4 @@ class CSVDatabase:
 
 if __name__ == "__main__":
     data = CSVDatabase()
+    
