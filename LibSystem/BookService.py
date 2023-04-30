@@ -33,9 +33,10 @@ class BookService:
 
     def getAvailableBookId(self):
         list = data.checkoutCopies
-        print(list)
+        print("~~~~~~~~~~~~", list)
         
 
 if __name__ == "__main__":
     book = BookService()
-    book.getAvailableBookId()
+    # book.getAvailableBookId()
+    book.addBook()
