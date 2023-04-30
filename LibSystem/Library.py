@@ -25,7 +25,7 @@ class Library:
                     searching = False
                 case _:
                     print("Invalid Option. Try again!")
-                    print()
+                    print("test")
 
 if __name__ == "__main__":
     lib = Library()
