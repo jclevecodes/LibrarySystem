@@ -26,4 +26,12 @@ class Book:
         return(self.title)
     
     def getISBN(self):
+<<<<<<< HEAD
         return(self.isbn)
+=======
+        return(self.isbn)
+    
+    
+
+    
+>>>>>>> master

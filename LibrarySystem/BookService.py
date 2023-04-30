@@ -31,4 +31,16 @@ class BookService:
                 if isbnSearch in data.isbnDict:
                     print(f"{data.isbnDict[isbnSearch]}")
 
+<<<<<<< HEAD
     
+=======
+    def getAvailableBookId(self):
+        list = data.checkoutCopies
+        print("~~~~~~~~~~~~", list)
+        
+
+if __name__ == "__main__":
+    book = BookService()
+    # book.getAvailableBookId()
+    book.addBook()
+>>>>>>> master
