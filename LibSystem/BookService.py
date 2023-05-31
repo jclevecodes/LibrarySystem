@@ -30,13 +30,15 @@ class BookService:
                 isbnSearch = input("Enter book ISBN: ")
                 if isbnSearch in data.isbnDict:
                     print(f"{data.isbnDict[isbnSearch]}")
-
-    def getAvailableBookId(self):
-        list = data.checkoutCopies
-        print("~~~~~~~~~~~~", list)
+    
+    def loadBooks(self):
+        data.bookLoad(True)
+        
         
 
-if __name__ == "__main__":
-    book = BookService()
-    # book.getAvailableBookId()
-    book.addBook()
+# if __name__ == "__main__":
+#     book = BookService()
+#     book.getAvailableBookId()
+#     book.addBook()
+#     print("Hello World")
+#     data.bookLoad()

@@ -9,6 +9,7 @@ class UserDatabase:
         self.nameDict = {}
         self.idDict = {}
         
+    def personLoad(self, loadRequest = False):
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
             
@@ -17,21 +18,31 @@ class UserDatabase:
                 name = row[0]
                 id = row[1]
 
+                print(name)
+                print(id)
+
+                
                 self.addUserToDatabase(name, id)
+
+                if (loadRequest == True):
+                    print(row)
 
     def addUserToDatabase(self, name, id, addUser = False):
 
         # Instantiate book object
         user = User(name, id)
-
         # Store book inside assigned dictionary
         self.nameDict[name] = user
         self.idDict[id] = user
 
         if (addUser == True):
-            if name in self.nameDict:
-                print(f"{name} is currently registered already")
+            # if name in self.nameDict:
+            #     print(f"{name} is currently registered already")
             with open(FILE_PATH, mode='a', newline="\n") as file:
                 writer = csv.writer(file)
 
                 writer.writerow([name, id])
+
+if __name__ == "__main__":
+    userDB = UserDatabase()
+    print(userDB.idDict.keys())

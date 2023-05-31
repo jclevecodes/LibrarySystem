@@ -6,34 +6,34 @@ FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/books.csv'
 class CSVDatabase:
 
     def __init__(self):
-        
-        self.titleDict = {}
-        self.authorDict = {}
-        self.isbnDict = {}
+        # self.titleDict = {}
+        # self.authorDict = {}
+        # self.isbnDict = {}
+        self.books = []
+        self.users = []
 
+    def bookLoad(self, loadRequest = False):
         # requestData = True
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
             
             # Looping over each book row
             for row in reader:
-                checkoutCopies = []
-                # print(type(row))
-                # print(row)
-                # Grab info from csv file and store info in assigned variables
-                title = row[0]
-                author = row[1]
-                isbn = row[2]
+                title, author, isbn, borrowed = row
+                book = Book(title, author, isbn, borrowed=bool(int(borrowed)))
+                self.books.append(book)
+                # title = row[0]
+                # author = row[1]
+                # isbn = row[2]
 
                 
-                for i in range(3, len(row)):
-                    checkoutCopies.append(row[i])
+                self.addBookToDatabase(title, author, isbn)
 
-                
-                self.addBookToDatabase(title, author, isbn, checkoutCopies)
-            
+                if (loadRequest == True):
+                    print(row)
                 # print(checkoutCopies)
-                checkoutCopies = []
+                # checkoutCopies = []
+        
 
 
     '''
@@ -50,13 +50,13 @@ class CSVDatabase:
         
         
         if (addBook == True):
-            if title in self.titleDict:
-                print(f"{title} is currently in the library already.")
-            else:
-                with open(FILE_PATH, mode='a', newline="\n") as file:
-                    writer = csv.writer(file)
+            # if title in self.titleDict:
+            #     print(f"{title} is currently in the library already.")
+            # else:
+            with open(FILE_PATH, mode='a', newline="\n") as file:
+                writer = csv.writer(file)
 
-                    writer.writerow([title, author, isbn])
+                writer.writerow([title, author, isbn])
 
 
 if __name__ == "__main__":

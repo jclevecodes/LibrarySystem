@@ -1,23 +1,19 @@
 class Book:
-    def __init__(self, bookAuthor, bookTitle, bookISBN):
+    def __init__(self, bookAuthor, bookTitle, bookISBN, borrowed = False):
         self.author = bookAuthor    
         self.title = bookTitle
         self.isbn = bookISBN
-        self.available = True
+        self.borrowed = borrowed
         
     def __str__(self):
-        if self.available == True:
-            availability = "Available"
-        else:
-            availability = "Unavailable"
-
-        return f"Author: {self.author}\n Title: {self.title}\n ISBN: {self.isbn}\n ({availability})\n"
+        bookStatus = "Borrowed" if self.borrowed else "Available"
+        return f"Author: {self.author}\n Title: {self.title}\n Isbn: {self.isbn} - {bookStatus}"
     
-    def checkOut(self):
-        self.available = False
+    # def checkOut(self):
+    #     self.available = False
 
-    def checkIn(self):
-        self.available = True
+    # def checkIn(self):
+    #     self.available = True
 
     def getAuthor(self):
         return(self.author)
