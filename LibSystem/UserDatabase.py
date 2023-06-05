@@ -2,47 +2,33 @@ import csv
 from User import User
 FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/users.csv'
 
-
 class UserDatabase:
 
     def __init__(self):
-        self.nameDict = {}
-        self.idDict = {}
+        self.users = []
         
     def personLoad(self, loadRequest = False):
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
-            
+
+            # Loop over each user row grabbing info from csv file and store info in assigned variables
             for row in reader:
-                # Grab info from csv file and store info in assigned variables
-                name = row[0]
-                id = row[1]
+                name, id = row
 
-                print(name)
-                print(id)
-
-                
-                self.addUserToDatabase(name, id)
+                user = User(name, id)
+                self.users.append(user)
 
                 if (loadRequest == True):
                     print(row)
 
-    def addUserToDatabase(self, name, id, addUser = False):
+    def addUserToDatabase(self):
+        with open(FILE_PATH, mode='w', newline="\n") as file:
+            writer = csv.writer(file)
 
-        # Instantiate book object
-        user = User(name, id)
-        # Store book inside assigned dictionary
-        self.nameDict[name] = user
-        self.idDict[id] = user
+            for user in self.users:
+                writer.writerow([user.name, user.id])
 
-        if (addUser == True):
-            # if name in self.nameDict:
-            #     print(f"{name} is currently registered already")
-            with open(FILE_PATH, mode='a', newline="\n") as file:
-                writer = csv.writer(file)
-
-                writer.writerow([name, id])
-
-if __name__ == "__main__":
-    userDB = UserDatabase()
-    print(userDB.idDict.keys())
+# if __name__ == "__main__":
+#     usersD = UserDatabase()
+#     usersD.personLoad(True)
+#     print(usersD.users)

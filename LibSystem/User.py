@@ -12,7 +12,7 @@ class User:
         self.id = userID
         self.borrowed_books = []
 
-    def book_borrow(self, theBook):
+    def bookBorrow(self, theBook):
         # print("TEST",theBook.borrowed)
         if theBook.borrowed:
             print("Book is already borrowed")
@@ -21,31 +21,32 @@ class User:
             self.borrowed_books.append(theBook)
             print(f"{self.name} has borrowed the book: {theBook.title}")
     
-    def return_book(self, theBook):
+    def returnBook(self, theBook):
         if theBook in self.borrowed_books:
             theBook.borrowed = False
             self.borrowed_books.remove(theBook)
             print(f"{self.name} has returned the book: {theBook.title}")
         else:
             print("You have not borrowed this book.")
+
+    def bookBorrowDisplay(self):
+        if (self.borrowed_books):
+            print(f"Books borrowed by {self.name}")
+            for books in self.borrowed_books:
+                print(books)
             
 
     def __str__(self):
         return (f"Name: {self.name}\n ID: {self.id}\n")
 
-    def getName(self):
-        return (self.name)
+    # def getName(self):
+    #     return (self.name)
     
-    def setName(self, nameOfUser):
-        self.name = nameOfUser
+    # def setName(self, nameOfUser):
+    #     self.name = nameOfUser
     
-    def getID(self):
-        return (self.id)
+    # def getID(self):
+    #     return (self.id)
     
-    def setID(self, idOfUser):
-        self.id = idOfUser
-
-if __name__ == "__main__":
-    user = User("josh", "2343")
-    user.book_borrow("john")
-    print("hello world")
+    # def setID(self, idOfUser):
+    #     self.id = idOfUser

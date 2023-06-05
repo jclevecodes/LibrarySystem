@@ -1,18 +1,15 @@
 from CSVDatabase import CSVDatabase
-data = CSVDatabase()
+from UserDatabase import UserDatabase
+from User import User
+from Book import Book
+
+bookData = CSVDatabase()
+userData = UserDatabase()
 
 class BookService:
-    def addBook(self):
-        bookTitle = input("Enter the book Title: ")
-        bookAuthor = input("Enter the book Author: ")
-        bookISBN = input("Enter the book ISBN number: ")
-        
-        data.addBookToDatabase(bookTitle, bookAuthor, bookISBN, True)
-        
-        print("----------------------------------------------------------------------------------------------")
-        print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
-        print("----------------------------------------------------------------------------------------------\n")
-
+    def addBook(self, book):
+        bookData.books.append(book)
+        bookData.addBookToDatabase()
 
     def bookLookup(self):
         searchMethod = input("How would you like to search for book? 1. Title 2. Author 3. ISBN\n")
@@ -20,25 +17,49 @@ class BookService:
         match searchMethod:
             case "1":
                 titleSearch = input("Enter book title: ")
-                if titleSearch in data.titleDict:
-                    print(f"{data.titleDict[titleSearch]}")
+                if titleSearch in bookData.titleDict:
+                    print(f"{bookData.titleDict[titleSearch]}")
             case "2":
                 authorSearch = input("Enter book author: ")
-                if authorSearch in data.authorDict:
-                    print(f"{data.authorDict[authorSearch]}")
+                if authorSearch in bookData.authorDict:
+                    print(f"{bookData.authorDict[authorSearch]}")
             case "3":
                 isbnSearch = input("Enter book ISBN: ")
-                if isbnSearch in data.isbnDict:
-                    print(f"{data.isbnDict[isbnSearch]}")
-    
-    def loadBooks(self):
-        data.bookLoad(True)
-        
-        
+                if isbnSearch in bookData.isbnDict:
+                    print(f"{bookData.isbnDict[isbnSearch]}")
 
-# if __name__ == "__main__":
-#     book = BookService()
-#     book.getAvailableBookId()
-#     book.addBook()
-#     print("Hello World")
-#     data.bookLoad()
+    def borrowedDisplay(self, userName, userID):
+        print()
+    
+    def checkoutBook(self, userName, bookTitle):
+        userData.personLoad()
+        user = next((u for u in userData.users if u.name == userName), None)
+        if (user):
+            bookData.bookLoad()
+            book = next((b for b in bookData.books if b.title == bookTitle), None)
+            if (book):
+                user.bookBorrow(book)
+                bookData.addBookToDatabase()
+                userData.addUserToDatabase()
+            else:
+                print("Book not found")
+        else:
+            print("User not found.")
+
+    def returnBook(self, userName, bookTitle):
+        # userData.personLoad()
+        user = next((u for u in userData.users if u.name == userName), None)
+        if (user):
+            # bookData.bookLoad()
+            book = next((b for b in user.borrowed_books if b.title == bookTitle), None)
+            if (book):
+                user.returnBook(book)
+                bookData.addBookToDatabase()
+                userData.addUserToDatabase()
+            else:
+                print("Book not within users books borrowed")
+        else:
+            print("User not found")
+
+    def loadBooks(self):
+        bookData.bookLoad(True)

@@ -1,30 +1,66 @@
-from LibManager import LibManager
-manage = LibManager() 
+# from LibManager import LibManager
+# manage = LibManager()
+from UserService import UserService
+from BookService import BookService
+userServ = UserService()
+bookServ = BookService()
+
+from User import User
+from Book import Book
 
 class Library:
     
     def menu(self):
         searching = True
 
-        print("Choose menu item")
+        print("\n---------------------------------------------------------CHOOSE MENU ITEM--------------------------------------------------------")
         while (searching == True):
-            choice = input("| 1. Registration | 2. Add Book | 3. Lookup Book | 4. Check-in | 5. Check-out | 6. Load Books | 7. Finish library |\n")
+            choice = input("| 1. Register User | 2. Add Book | 3. Checkout Book | 4. Return Book | 5. Display Books | 6. Display People | 7. Finish library |\n")
 
             match choice:
                 case "1":
-                    manage.user.userRegistration()
+                    userName = input(f"Enter your name: ")
+                    userID = input(f"Enter your ID number: ")
+                    print("----------------------------------------------------------------------------------")
+                    print(f"{userName} with ID #{userID} has been registered within our library system!")
+                    print("----------------------------------------------------------------------------------\n")
+                    user = User(userName, userID)
+                    userServ.userRegistration(user)
+
                 case "2":
-                    manage.book.addBook()
+                    bookTitle = input("Enter the book Title: ")
+                    bookAuthor = input("Enter the book Author: ")
+                    bookISBN = input("Enter the book ISBN number: ")
+                    print("----------------------------------------------------------------------------------------------")
+                    print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
+                    print("----------------------------------------------------------------------------------------------\n")
+                    book = Book(bookTitle, bookAuthor, bookISBN)
+                    bookServ.addBook(book)
+
                 case "3":
-                    manage.book.bookLookup()
+                    userName = input(f"Enter your name: ")
+                    bookTitle = input(f"Enter title of book: ")
+                    bookServ.checkoutBook(userName, bookTitle)
+
                 case "4":
-                    manage.user.userVerification()
+                    userName = input(f"Enter your name: ")
+                    bookTitle = input(f"Enter title of book: ")
+                    bookServ.returnBook(userName, bookTitle)
+
                 case "5":
-                    manage.user.userVerification()
+                    print("\n")
+                    bookServ.loadBooks()
+                    print("\n")
+
                 case "6":
-                    manage.book.loadBooks()
+                    print("\n")
+                    userServ.loadUsers()
+                    print("\n")
+                    
+
                 case "7":
                     searching = False
+
                 case _:
                     print("Invalid Option. Try again!")
                     print("test")

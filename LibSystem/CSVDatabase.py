@@ -1,64 +1,34 @@
 import csv
 from Book import Book 
-
 FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/books.csv'
 
 class CSVDatabase:
 
     def __init__(self):
-        # self.titleDict = {}
-        # self.authorDict = {}
-        # self.isbnDict = {}
         self.books = []
-        self.users = []
 
     def bookLoad(self, loadRequest = False):
-        # requestData = True
         with open(FILE_PATH, mode='r') as file:
             reader = csv.reader(file)
             
-            # Looping over each book row
+            # Loop over each book row grabbing info from csv file and store info in assigned variables
             for row in reader:
                 title, author, isbn, borrowed = row
-                book = Book(title, author, isbn, borrowed=bool(int(borrowed)))
-                self.books.append(book)
-                # title = row[0]
-                # author = row[1]
-                # isbn = row[2]
 
-                
-                self.addBookToDatabase(title, author, isbn)
+                book = Book(title, author, isbn, bool(int(borrowed)))
+                self.books.append(book)
 
                 if (loadRequest == True):
                     print(row)
-                # print(checkoutCopies)
-                # checkoutCopies = []
-        
 
+    def addBookToDatabase(self):
+        with open(FILE_PATH, mode='w', newline="\n") as file:
+            writer = csv.writer(file)
 
-    '''
-        * Method that allows the addition of book to the database
-    '''
-    def addBookToDatabase(self, title, author, isbn, addBook = False):
-        # Instantiate book object
-        book = Book(author, title, isbn)
-        # print(book)
-        # Store book inside assigned dictionary
-        self.titleDict[title] = book
-        self.authorDict[author] = book
-        self.isbnDict[isbn] = book
-        
-        
-        if (addBook == True):
-            # if title in self.titleDict:
-            #     print(f"{title} is currently in the library already.")
-            # else:
-            with open(FILE_PATH, mode='a', newline="\n") as file:
-                writer = csv.writer(file)
+            for book in self.books:
+                writer.writerow([book.title, book.author, book.isbn, int(book.borrowed)])
 
-                writer.writerow([title, author, isbn])
-
-
-if __name__ == "__main__":
-    data = CSVDatabase()
-    
+# if __name__ == "__main__":
+#     db = CSVDatabase()
+#     db.bookLoad(True)
+#     print(db.books)
