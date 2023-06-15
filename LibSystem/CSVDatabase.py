@@ -13,20 +13,20 @@ class CSVDatabase:
             
             # Loop over each book row grabbing info from csv file and store info in assigned variables
             for row in reader:
-                title, author, isbn, borrowed = row
+                title, author, isbn, borrowed, copies = row
 
-                book = Book(title, author, isbn, bool(int(borrowed)))
+                book = Book(title, author, isbn, bool(int(borrowed)), int(copies))
                 self.books.append(book)
 
                 if (loadRequest == True):
-                    print(row)
+                    print(book)
 
     def addBookToDatabase(self):
-        with open(FILE_PATH, mode='w', newline="\n") as file:
+        with open(FILE_PATH, mode='a', newline="\n") as file:
             writer = csv.writer(file)
 
             for book in self.books:
-                writer.writerow([book.title, book.author, book.isbn, int(book.borrowed)])
+                writer.writerow([book.title, book.author, book.isbn, int(book.borrowed), int(book.copies)])
 
 # if __name__ == "__main__":
 #     db = CSVDatabase()

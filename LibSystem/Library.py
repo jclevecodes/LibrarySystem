@@ -15,7 +15,7 @@ class Library:
 
         print("\n---------------------------------------------------------CHOOSE MENU ITEM--------------------------------------------------------")
         while (searching == True):
-            choice = input("| 1. Register User | 2. Add Book | 3. Checkout Book | 4. Return Book | 5. Display Books | 6. Display People | 7. Finish library |\n")
+            choice = input("| 1. Register User | 2. Add Book | 3. Checkout Book | 4. Return Book | 5. Display All Books | 6. Display Available Books | 7. Display People | 7. Finish library |\n")
 
             match choice:
                 case "1":
@@ -53,12 +53,17 @@ class Library:
                     print("\n")
 
                 case "6":
+
+                    print("\n")
+                    bookServ.borrowedDisplay()
+                    print("\n")
+
+                case "7":
                     print("\n")
                     userServ.loadUsers()
                     print("\n")
-                    
-
-                case "7":
+                
+                case "8":
                     searching = False
 
                 case _:

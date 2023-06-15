@@ -18,8 +18,11 @@ class User:
             print("Book is already borrowed")
         else:
             theBook.borrowed = True
+            theBook.setBorrowed()
             self.borrowed_books.append(theBook)
             print(f"{self.name} has borrowed the book: {theBook.title}")
+            if (theBook.copies != 0):
+                theBook.borrowed = False
     
     def returnBook(self, theBook):
         if theBook in self.borrowed_books:
@@ -34,10 +37,12 @@ class User:
             print(f"Books borrowed by {self.name}")
             for books in self.borrowed_books:
                 print(books)
+
+    # def bookAvailableDisplay(self)
             
 
     def __str__(self):
-        return (f"Name: {self.name}\n ID: {self.id}\n")
+        return (f"Name: {self.name}\n ID: {self.id}\n Borrowed books: {self.borrowed_books}")
 
     # def getName(self):
     #     return (self.name)

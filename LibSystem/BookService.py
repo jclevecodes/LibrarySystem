@@ -11,25 +11,12 @@ class BookService:
         bookData.books.append(book)
         bookData.addBookToDatabase()
 
-    def bookLookup(self):
-        searchMethod = input("How would you like to search for book? 1. Title 2. Author 3. ISBN\n")
-
-        match searchMethod:
-            case "1":
-                titleSearch = input("Enter book title: ")
-                if titleSearch in bookData.titleDict:
-                    print(f"{bookData.titleDict[titleSearch]}")
-            case "2":
-                authorSearch = input("Enter book author: ")
-                if authorSearch in bookData.authorDict:
-                    print(f"{bookData.authorDict[authorSearch]}")
-            case "3":
-                isbnSearch = input("Enter book ISBN: ")
-                if isbnSearch in bookData.isbnDict:
-                    print(f"{bookData.isbnDict[isbnSearch]}")
-
-    def borrowedDisplay(self, userName, userID):
-        print()
+    def borrowedDisplay(self):
+        print("Books available for checkout:\n")
+        bookData.bookLoad()
+        for book in bookData.books:
+            if not book.borrowed:
+                print(book,"\n")
     
     def checkoutBook(self, userName, bookTitle):
         userData.personLoad()
@@ -39,8 +26,9 @@ class BookService:
             book = next((b for b in bookData.books if b.title == bookTitle), None)
             if (book):
                 user.bookBorrow(book)
-                bookData.addBookToDatabase()
-                userData.addUserToDatabase()
+                # bookData.addBookToDatabase()
+                # userData.addUserToDatabase()
+            
             else:
                 print("Book not found")
         else:

@@ -22,7 +22,7 @@ class UserDatabase:
                     print(row)
 
     def addUserToDatabase(self):
-        with open(FILE_PATH, mode='w', newline="\n") as file:
+        with open(FILE_PATH, mode='a', newline="\n") as file:
             writer = csv.writer(file)
 
             for user in self.users:

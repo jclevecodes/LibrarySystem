@@ -7,6 +7,8 @@ class UserService:
     
     def userRegistration(self, user):
         userData.users.append(user)
+        for i in userData.users:
+            print("----",i)
         userData.addUserToDatabase()
 
     def loadUsers(self):
