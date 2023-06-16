@@ -1,5 +1,7 @@
 import csv
 from Book import Book
+from CSVDatabase import CSVDatabase
+
 # book = Book("234", "we", "sdf")
 
 FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/users.csv'
@@ -27,6 +29,7 @@ class User:
     def returnBook(self, theBook):
         if theBook in self.borrowed_books:
             theBook.borrowed = False
+            theBook.setBorrowed()
             self.borrowed_books.remove(theBook)
             print(f"{self.name} has returned the book: {theBook.title}")
         else:

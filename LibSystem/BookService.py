@@ -33,6 +33,7 @@ class BookService:
                 print("Book not found")
         else:
             print("User not found.")
+        bookData.addBookToDatabase()
 
     def returnBook(self, userName, bookTitle):
         # userData.personLoad()
@@ -42,8 +43,8 @@ class BookService:
             book = next((b for b in user.borrowed_books if b.title == bookTitle), None)
             if (book):
                 user.returnBook(book)
-                bookData.addBookToDatabase()
-                userData.addUserToDatabase()
+                # bookData.addBookToDatabase()
+                # userData.addUserToDatabase()
             else:
                 print("Book not within users books borrowed")
         else:
