@@ -1,5 +1,5 @@
 import csv
-from Book import Book 
+from Classes.Book import Book 
 FILE_PATH = '/Users/joshuacleveland/Desktop/LibrarySystem/LibSystem/books.csv'
 
 class CSVDatabase:
@@ -15,7 +15,7 @@ class CSVDatabase:
             for row in reader:
                 title, author, isbn, borrowed, copies = row
 
-                book = Book(title, author, isbn, bool(int(borrowed)), int(copies))
+                book = Book(title, author, isbn, int(copies))
                 self.books.append(book)
 
                 if (loadRequest == True):

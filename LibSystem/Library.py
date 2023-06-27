@@ -1,12 +1,12 @@
 # from LibManager import LibManager
 # manage = LibManager()
-from UserService import UserService
-from BookService import BookService
+from Services.UserService import UserService
+from Services.BookService import BookService
 userServ = UserService()
 bookServ = BookService()
 
-from User import User
-from Book import Book
+from Classes.User import User
+from Classes.Book import Book
 
 class Library:
     
@@ -15,55 +15,80 @@ class Library:
 
         print("\n---------------------------------------------------------CHOOSE MENU ITEM--------------------------------------------------------")
         while (searching == True):
-            choice = input("| 1. Register User | 2. Add Book | 3. Checkout Book | 4. Return Book | 5. Display All Books | 6. Display Available Books | 7. Display People | 7. Finish library |\n")
+            choice = input("| 1. Search Database | 2. Register User | 3. Add Book | 4. Checkout Book | 5. Return Book | 6. Display All Books | 7. Display Available Books | 8. Display People | 9. Finish library |\n")
 
             match choice:
-                case "1":
-                    userName = input(f"Enter your name: ")
-                    userID = input(f"Enter your ID number: ")
+                case "1": 
+                    searchTerm = input('Would you like to search users or books: ')
+                    match searchTerm:
+                        case "users":
+                            userSearch = input("What would you like to search by: \'Name\' or \'IDNumber\' ")
+                            match userSearch:
+                                case "Name":
+                                    nameSearch = input("What user are you looking for?: ")
+                                    userServ.searchUsers(userSearch, nameSearch)
+                                case "IDNumber":
+                                    nameSearch = input("What user are you looking for?: ")
+                                    userServ.searchUsers(userSearch, nameSearch)
+                        case "books":
+                            userSearch = input("What would you like to search by: \'Title\', \'Author\', or \'ISBN\'")
+                            match userSearch:
+                                case "Title":
+                                    titleSearch = input("What is the title of the book? ")
+                                    userServ.searchBooks(userSearch, titleSearch)
+                                case "Author":
+                                    authorSearch = input("What is the title of the book? ")
+                                    userServ.searchBooks(userSearch, authorSearch)
+                                case "ISBN":
+                                    isbnSearch = input("What is the title of the book? ")
+                                    userServ.searchBooks(userSearch, isbnSearch)
+                                    isbnSearch = input("What is the input device that you are attempting to use")
+
+                case "2":
+                    userName = input("Enter your name: ")
+                    userName = input("Enter the name of eac user")
+                    userID = input("Enter your ID number: ")
                     print("----------------------------------------------------------------------------------")
                     print(f"{userName} with ID #{userID} has been registered within our library system!")
                     print("----------------------------------------------------------------------------------\n")
-                    user = User(userName, userID)
-                    userServ.userRegistration(user)
+                    userServ.addUser(userName, userID)
 
-                case "2":
+                case "3":
                     bookTitle = input("Enter the book Title: ")
                     bookAuthor = input("Enter the book Author: ")
                     bookISBN = input("Enter the book ISBN number: ")
                     print("----------------------------------------------------------------------------------------------")
                     print(f"{bookTitle} by {bookAuthor} with ISBN #{bookISBN}has been added to our library!") 
                     print("----------------------------------------------------------------------------------------------\n")
-                    book = Book(bookTitle, bookAuthor, bookISBN)
-                    bookServ.addBook(book)
-
-                case "3":
-                    userName = input(f"Enter your name: ")
-                    bookTitle = input(f"Enter title of book: ")
-                    bookServ.checkoutBook(userName, bookTitle)
+                    bookServ.addBook(bookTitle, bookAuthor, bookISBN)
 
                 case "4":
-                    userName = input(f"Enter your name: ")
-                    bookTitle = input(f"Enter title of book: ")
-                    bookServ.returnBook(userName, bookTitle)
+                    userName = input("Enter your name: ")
+                    bookTitle = input("Enter title of book: ")
+                    bookServ.checkoutBook(userName, bookTitle)
 
                 case "5":
-                    print("\n")
-                    bookServ.loadBooks()
-                    print("\n")
+                    userName = input("Enter your name: ")
+                    bookTitle = input("Enter title of book: ")
+                    bookServ.returnBook(userName, bookTitle)
 
                 case "6":
-
                     print("\n")
-                    bookServ.borrowedDisplay()
+                    bookServ.displayBooks()
                     print("\n")
 
                 case "7":
+
                     print("\n")
-                    userServ.loadUsers()
+                    bookServ.displayAvailableBooks()
+                    print("\n")
+
+                case "8":
+                    print("\n")
+                    userServ.displayUsers()
                     print("\n")
                 
-                case "8":
+                case "9":
                     searching = False
 
                 case _:
